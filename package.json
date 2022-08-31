@@ -1,0 +1,26 @@
+{
+  "name": "nosql-social-network-api",
+  "version": "1.0.0",
+  "description": "API for social networkweb application where users can share their thougths, react to friends' thoughts, and create a friend list.",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/min-hinthar/nosql-social-network-api.git"
+  },
+  "keywords": [
+    "nosql",
+    "social",
+    "network",
+    "api"
+  ],
+  "author": "Min K Khant",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/min-hinthar/nosql-social-network-api/issues"
+  },
+  "homepage": "https://github.com/min-hinthar/nosql-social-network-api#readme"
+}
