@@ -1,5 +1,7 @@
 // import chema, model, types from mongoose
 const { Schema, Model, Types } = require('mongoose');
+// import moment library
+const moment = require('moment');
 
 // create new instance of Schema
 const UserSchema = new Schema(
@@ -16,11 +18,22 @@ const UserSchema = new Schema(
             type: String,
             unique: true,
             required: true,
+            trim: true,
             match: [/^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/, 'Invalid Email! Please Enter A Valid Email Address']
         },
-        // thoughts
-        thoughts: [],
-        friends: [this]
+        // thoughts, objectId
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought'
+            }
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ]
     },
     {
         // set virtual fields true
