@@ -39,8 +39,43 @@ const userModelController = {
             console.log(err);
             res.status(500).json(err);
         });
-    }
+    },
 
+    // Create new User
+    createUser({ body}, res){
+        User.create(body)
+        // save to User database
+        .then(UsersDataDB => res.json(UsersDataDB))
+        // catch err 400
+        .catch(err => res.status(400).json(err));
+    },
+
+    // Update User by ID
+    updateUserByID({ params, body}, res) {
+        User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true})
+        .then(UsersDataDB => {
+            if(!UsersDataDB) {
+                res.status(404).json({ message: 'Cannot find User with input ID' });
+                return;
+            }
+            res.json(UsersDataDB)
+        })
+        // catch err 400
+        .catch(err => res.status(400).json(err));
+    },
+
+    // Delete User by ID
+    deleteUserByID({ params}, res) {
+        User.findOneAndDelete({ _id: params.id })
+        .then(UsersDataDB => {
+            if(!UsersDataDB) {
+                res.status(404).json({ message: 'Cannot find User with input ID' });
+                return;
+            }
+            res.json(UsersDataDB)
+        })
+        // catch err 400
+        .catch(err => res.status(400).json(err));
 }
 
 // export module as userModelController
