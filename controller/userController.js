@@ -8,8 +8,8 @@ const userModelController = {
         User.find({})
         // populate Users path Thought
         .popolate({ path: 'Thought', select: '-__V' })
-        // populate Users path Friends
-        .populate({ path: 'Friends', select: '-__V'})
+        // populate Users path Friend
+        .populate({ path: 'Friend', select: '-__V'})
         .select('-__V')
         .then(UsersDataDB => res.json(UsersDataDB))
         // catch err status 500
@@ -25,7 +25,7 @@ const userModelController = {
         // populate Users path Thought
         .popolate({ path: 'Thought', select: '-__V' })
         // populate Users path Friends
-        .populate({ path: 'Friends', select: '-__V'})
+        .populate({ path: 'Friend', select: '-__V'})
         .select('-__V')
         .then(UsersDataDB => {
             if(!UsersDataDB){
@@ -76,7 +76,43 @@ const userModelController = {
         })
         // catch err 400
         .catch(err => res.status(400).json(err));
-}
+    },
+
+    // Add Friend by ID
+    AddFriendByID({ params}, res) {
+        User.findOneAndUpdate({ _id: params.id }, {$push: { friend: params.friendID}}, { new: true, runValidators: true})
+        // populate path Friend
+        .populate({ path: 'Friend', select: ('-__V')})
+        .select('-__V')
+        .then(UsersDataDB => {
+            if(!UsersDataDB) {
+                res.status(404).json({ message: 'Cannot find User with input ID' });
+                return;
+            }
+            res.json(UsersDataDB)
+        })
+        // catch err 400
+        .catch(err => res.status(400).json(err));
+    },
+
+    // Delete Friend by ID
+    // Add Friend by ID
+    DeleteFriendByID({ params}, res) {
+        User.findOneAndUpdate({ _id: params.id }, {$push: { friend: params.friendID}}, { new: true, runValidators: true})
+        // populate path Friend
+        .populate({ path: 'Friend', select: ('-__V')})
+        .select('-__V')
+        .then(UsersDataDB => {
+            if(!UsersDataDB) {
+                res.status(404).json({ message: 'Cannot find User with input ID' });
+                return;
+            }
+            res.json(UsersDataDB)
+        })
+        // catch err 400
+        .catch(err => res.status(400).json(err));
+    },
+};
 
 // export module as userModelController
 module.exports = userModelController;
