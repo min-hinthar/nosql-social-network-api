@@ -1,9 +1,9 @@
 // import chema, model, types from mongoose
-const { Schema, Model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 // import moment library
 const moment = require('moment');
 // import Reaction Schema
-const { ReactionSchema } = require('./reaction');
+const ReactionSchema = require('./reaction');
 
 // create new instance of Schema
 const ThoughtSchema = new Schema(
@@ -44,7 +44,7 @@ const ThoughtSchema = new Schema(
 );
 
 // function to show reaction count
-ThoughtSchema.virtuals('reactionCount').get(function(){
+ThoughtSchema.virtual('reactionCount').get(function(){
     return this.reactions.length;
 })
 

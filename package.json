@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/min-hinthar/nosql-social-network-api/issues"
   },
-  "homepage": "https://github.com/min-hinthar/nosql-social-network-api#readme"
+  "homepage": "https://github.com/min-hinthar/nosql-social-network-api#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }

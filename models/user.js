@@ -1,5 +1,5 @@
 // import chema, model, types from mongoose
-const { Schema, Model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 // import moment library
 const moment = require('moment');
 
@@ -49,7 +49,7 @@ const UserSchema = new Schema(
 );
 
 // function to show friend count
-UserSchema.virtuals('friendCount').get(function(){
+UserSchema.virtual('friendCount').get(function(){
     return this.friends.length;
 })
 

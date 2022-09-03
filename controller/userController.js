@@ -6,10 +6,10 @@ const userModelController = {
     // GET all users
     getUsers(req, res) {
         User.find({})
-        // populate Users path Thought
-        .popolate({ path: 'Thought', select: '-__V' })
-        // populate Users path Friend
-        .populate({ path: 'Friend', select: '-__V'})
+        // populate Users path Thoughts
+        .popolate({ path: 'thoughts', select: '-__V' })
+        // populate Users path Friends
+        .populate({ path: 'friends', select: '-__V'})
         .select('-__V')
         .then(UsersDataDB => res.json(UsersDataDB))
         // catch err status 500
@@ -23,9 +23,9 @@ const userModelController = {
     getUserByID({ params}, res){
         User.findOne({ _id: params.id })
         // populate Users path Thought
-        .popolate({ path: 'Thought', select: '-__V' })
+        .popolate({ path: 'thoughts', select: '-__V' })
         // populate Users path Friends
-        .populate({ path: 'Friend', select: '-__V'})
+        .populate({ path: 'friends', select: '-__V'})
         .select('-__V')
         .then(UsersDataDB => {
             if(!UsersDataDB){
@@ -81,8 +81,8 @@ const userModelController = {
     // Add Friend by ID
     AddFriendByID({ params}, res) {
         User.findOneAndUpdate({ _id: params.id }, {$push: { friend: params.friendID}}, { new: true, runValidators: true})
-        // populate path Friend
-        .populate({ path: 'Friend', select: ('-__V')})
+        // populate path Friends
+        .populate({ path: 'friends', select: ('-__V')})
         .select('-__V')
         .then(UsersDataDB => {
             if(!UsersDataDB) {
@@ -96,11 +96,10 @@ const userModelController = {
     },
 
     // Delete Friend by ID
-    // Add Friend by ID
     DeleteFriendByID({ params}, res) {
         User.findOneAndUpdate({ _id: params.id }, {$push: { friend: params.friendID}}, { new: true, runValidators: true})
         // populate path Friend
-        .populate({ path: 'Friend', select: ('-__V')})
+        .populate({ path: 'friends', select: ('-__V')})
         .select('-__V')
         .then(UsersDataDB => {
             if(!UsersDataDB) {

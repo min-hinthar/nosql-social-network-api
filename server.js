@@ -17,12 +17,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(routes);
 
-// connect mongoose to localhost
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/nosql-social-network-api', {
-    useFindAndModify: false,
-    useNewUrlParse: true,
-    useUnifiedTopology: true
-});
 
 // mongoose debug query
 mongoose.set('debug', true);

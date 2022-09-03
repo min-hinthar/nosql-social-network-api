@@ -32,7 +32,7 @@ const ReactionSchema = new Schema(
             get: (createDateStamp) => moment(createDateStamp).format('MM/DD/YYY [at] HH:MM: a')
         },
         // use imported ReactionSchema
-        reactions: [ ReactionSchema ],
+        //reactions: [ ReactionSchema ],
     },
     {
         // set virtual fields true
