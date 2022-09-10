@@ -17,21 +17,21 @@ router.route('/')
 .get(getThoughts);
 
 // API POST route for createThought
-router.route('/:userID')
+router.route('/')
 .post(createThought);
 
 // API GET PUT DELETE routes with thoughtID
-router.route('/:thoughtID')
+router.route('/:id')
 .get(getThoughByID)
 .put(updateThoughtByID)
 .delete(deleteThoughtByID);
 
 // API POST route for addReaction
-router.route('/:thoughtID/reactions')
+router.route('/:id/reactions')
 .post(AddReaction);
 
 // API DELETE route for deleteReaction
-router.route('/:thoughtID/reactions/:reactionID')
+router.route('/:id/reactions/:reactionID')
 .delete(DeleteReactionByID);
 
 // export module as router

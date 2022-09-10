@@ -8,8 +8,8 @@ const ReactionSchema = require('./reaction');
 // create new instance of Schema
 const ThoughtSchema = new Schema(
     {
-        // throughtText, string
-        throughtText: {
+        // thoughtText, string
+        thoughtText: {
             type: String,
             required: true,
             minLength: 1,
@@ -19,7 +19,6 @@ const ThoughtSchema = new Schema(
         username: {
             type: String,
             required: true,
-            ref: 'User'
         },
         // dateCreated
         dateCreated: {

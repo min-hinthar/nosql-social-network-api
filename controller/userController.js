@@ -7,7 +7,7 @@ const userModelController = {
     getUsers(req, res) {
         User.find({})
         // populate Users path Thoughts
-        .popolate({ path: 'thoughts', select: '-__V' })
+        .populate({ path: 'thoughts', select: '-__V' })
         // populate Users path Friends
         .populate({ path: 'friends', select: '-__V'})
         .select('-__V')
@@ -23,7 +23,7 @@ const userModelController = {
     getUserByID({ params}, res){
         User.findOne({ _id: params.id })
         // populate Users path Thought
-        .popolate({ path: 'thoughts', select: '-__V' })
+        .populate({ path: 'thoughts', select: '-__V' })
         // populate Users path Friends
         .populate({ path: 'friends', select: '-__V'})
         .select('-__V')
@@ -80,7 +80,7 @@ const userModelController = {
 
     // Add Friend by ID
     AddFriendByID({ params}, res) {
-        User.findOneAndUpdate({ _id: params.id }, {$push: { friend: params.friendID}}, { new: true, runValidators: true})
+        User.findOneAndUpdate({ _id: params.id }, {$addToSet: { friends: params.friendID}}, { new: true, runValidators: true})
         // populate path Friends
         .populate({ path: 'friends', select: ('-__V')})
         .select('-__V')
@@ -97,7 +97,7 @@ const userModelController = {
 
     // Delete Friend by ID
     DeleteFriendByID({ params}, res) {
-        User.findOneAndUpdate({ _id: params.id }, {$push: { friend: params.friendID}}, { new: true, runValidators: true})
+        User.findOneAndUpdate({ _id: params.id }, {$pull: { friends: params.friendID}}, { new: true, runValidators: true})
         // populate path Friend
         .populate({ path: 'friends', select: ('-__V')})
         .select('-__V')

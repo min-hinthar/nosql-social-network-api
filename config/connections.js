@@ -1,5 +1,5 @@
 // import mongoose module
-const { mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 
 // store config uri and process .env as var
 const connectionString = 

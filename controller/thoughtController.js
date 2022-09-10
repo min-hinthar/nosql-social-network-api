@@ -7,7 +7,7 @@ const thoughtModelController = {
     getThoughts(req, res) {
         Thought.find({})
         // populate Thoughts path user
-        .popolate({ path: 'user', select: '-__V' })
+        // .populate({ path: 'username', select: '-__V' })
         .select('-__V')
         // sort by id
         .sort({ _id: -1 })
@@ -23,7 +23,7 @@ const thoughtModelController = {
     getThoughByID({ params}, res){
         Thought.findOne({ _id: params.id })
         // populate Users path Thought
-        .popolate({ path: 'user', select: '-__V' })
+        // .populate({ path: 'username', select: '-__V' })
         // sort by id
         .sort({ _id: -1 })
         .select('-__V')
@@ -102,7 +102,7 @@ const thoughtModelController = {
 
     // Delete Friend by ID
     DeleteReactionByID({ params}, res) {
-        Thought.findOneAndUpdate({ _id: params.id }, {$push: { reactions: params.reactionID}}, { new: true, runValidators: true})
+        Thought.findOneAndUpdate({ _id: params.id }, {$pull: { reactions: params.reactionID}}, { new: true, runValidators: true})
         .then(ThoughtsDataDB => {
             if(!ThoughtsDataDB) {
                 res.status(404).json({ message: 'Cannot find Reaction with input ID' });
