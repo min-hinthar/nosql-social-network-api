@@ -102,7 +102,7 @@ const thoughtModelController = {
 
     // Delete Friend by ID
     DeleteReactionByID({ params}, res) {
-        Thought.findOneAndUpdate({ _id: params.id }, {$pull: { reactions: params.reactionID}}, { new: true, runValidators: true})
+        Thought.findOneAndUpdate({ _id: params.id }, {$pull: { reactions: {reactionID: params.reactionID}}}, { new: true, runValidators: true})
         .then(ThoughtsDataDB => {
             if(!ThoughtsDataDB) {
                 res.status(404).json({ message: 'Cannot find Reaction with input ID' });
